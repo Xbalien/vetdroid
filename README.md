@@ -6,5 +6,8 @@
 # run
     python staticaudit.py apk_path
 
+#result
 
+> The /sampleapk/res_ifzu is audit result about ifzu.apk
 
+    
