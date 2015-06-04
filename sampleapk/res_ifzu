@@ -1,0 +1,390 @@
+################################ webview ######################################
+Lcom/handmark/pulltorefresh/library/extras/PullToRefreshWebView2;->createRefreshableView.java:v0.addJavascriptInterface(this.mJsCallback, "ptr");
+    protected android.webkit.WebView createRefreshableView(android.content.Context p4, android.util.AttributeSet p5)
+    {
+        v0 = super.createRefreshableView(p4, p5);
+        this.mJsCallback = new com.handmark.pulltorefresh.library.extras.PullToRefreshWebView2$JsValueCallback(this);
+        v0.addJavascriptInterface(this.mJsCallback, "ptr");
+        return v0;
+    }
+
+Lcom/wisorg/jslibrary/DetailActivity;->setWebView.java:this.mWebView.addJavascriptInterface(this, "android");
+    private void setWebView()
+    {
+        if((this.mUrl != 0) && (this.mUrl.startsWith("http") != 0)) {
+            this.mProgressBar.setVisibility(0);
+        }
+        this.callbackparms = this.getIntent().getStringExtra("callbackparms");
+        v0 = this.mWebView.getSettings();
+        v0.setJavaScriptEnabled(1);
+        v0.setUseWideViewPort(1);
+        v0.setLoadWithOverviewMode(1);
+        v0.setAllowFileAccess(1);
+        if((this.getMethodIsExit(v0.getClass(), "setAllowFileAccessFromFileURLs") != 0) && (this.getMethodIsExit(v0.getClass(), "setAllowUniversalAccessFromFileURLs") != 0)) {
+            v0.setAllowFileAccessFromFileURLs(1);
+            v0.setAllowUniversalAccessFromFileURLs(1);
+        }
+        this.mWebView.addJavascriptInterface(this, "android");
+        this.mWebView.setVisibility(0);
+        this.mWebView.requestFocus();
+        this.showAlert();
+        this.mWebView.loadUrl(this.mUrl);
+        return;
+    }
+
+################################ https ######################################
+Lcom/loopj/android/http/MySSLSocketFactory;->getFixedSocketFactory.java:v0.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+    public static org.apache.http.conn.ssl.SSLSocketFactory getFixedSocketFactory()
+    {
+        v0 = new com.loopj.android.http.MySSLSocketFactory(com.loopj.android.http.MySSLSocketFactory.getKeystore());
+        v0.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+        return v0;
+    }
+
+################################ intent_scheme ######################################
+None
+################################ logcat ######################################
+None
+################################ manifest_config ######################################
+allow_backup : true
+debuggable : false
+################################### PROVIDER ###################################
+com.wisorg.providers.downloads.DownloadProvider
+com.wisorg.fzdx.provider.PlatformProvider
+################################### RECEIVER ###################################
+com.wisorg.fzdx.receiver.AlarmReceiver
+com.wisorg.fzdx.receiver.BootReceiver
+################################### SERVICE ###################################
+################################### ACTIVITY ###################################
+com.wisorg.jslibrary.HybirdInstallActivity
+com.wisorg.identity.view.LoginActivity
+com.example.mydemo2.wxapi.WXEntryActivity
+com.wisorg.fzdx.activity.notice.NoticeSubscribeListActivity
+com.wisorg.fzdx.activity.weibo.WeiboSubscribeListActivity
+com.wisorg.fzdx.activity.ControlActvity
+com.wisorg.fzdx.activity.SplashActivity
+com.wisorg.fzdx.activity.news.NewsAggregationMainActivity
+################################ register_receiver ######################################
+Lcom/wisorg/fzdx/activity/StyleTabMainActivity;->onCreate.java:this.registerReceiver(this.mNoticeReceiver, v1);
+    public void onCreate(android.os.Bundle p6)
+    {
+        super.onCreate(p6);
+        this.mContext = this;
+        this.mIConfig = this.getConfig();
+        this.mIConfig.setBoolean("PREFERENCE_MAIN_ACTIVITY_LOAD", Boolean.valueOf(1));
+        v1 = new android.content.IntentFilter();
+        v1.addAction("wisorg.action.ACTION_NOTICE");
+        v1.addAction("wisorg.action.ACTION_NOTICE_RESET");
+        this.registerReceiver(this.mNoticeReceiver, v1);
+        if(com.wisorg.fzdx.config.ThemeSettingConfig.getTheme(this.mContext) == 2) {
+            this.findViewStyleThird();
+            this.mModel = this.getApplicationZ().setCallback(this);
+            this.initViewpager();
+        } else {
+            this.findView();
+            this.addTabListener();
+            this.bundlePush = this.getIntent().getExtras();
+            this.isTurnMessage = Boolean.valueOf(this.bundlePush.getBoolean("EXTRA_NOTICE_STYLE_TAB")).booleanValue();
+        }
+        return;
+    }
+
+Lorg/androidpn/push/PushService;->registerConnectivityReceiver.java:this.registerReceiver(this.connectivityReceiver, v0);
+    private void registerConnectivityReceiver()
+    {
+        v2 = new Object[0];
+        org.androidpn.push.config.L.d("registerConnectivityReceiver()...", v2);
+        this.telephonyManager.listen(this.phoneStateListener, 64);
+        v0 = new android.content.IntentFilter();
+        v0.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        this.registerReceiver(this.connectivityReceiver, v0);
+        return;
+    }
+
+Lcom/baidu/location/d;->do.java:com.baidu.location.f.getServiceContext().registerReceiver(this.try, v0);
+    public void do()
+    {
+        this.try = new com.baidu.location.d$a(this, 0);
+        v0 = new android.content.IntentFilter();
+        v0.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        com.baidu.location.f.getServiceContext().registerReceiver(this.try, v0);
+        this.for = 1;
+        this.try();
+        this.if = 1;
+        return;
+    }
+
+Lcom/baidu/location/ai;->a9.java:com.baidu.location.f.getServiceContext().registerReceiver(this.gc, new android.content.IntentFilter("android.net.wifi.SCAN_RESULTS"));
+    public void a9()
+    {
+        if(this.ga != 1) {
+            this.f7 = com.baidu.location.f.getServiceContext().getSystemService("wifi");
+            this.gc = new com.baidu.location.ai$a(this, 0);
+            com.baidu.location.f.getServiceContext().registerReceiver(this.gc, new android.content.IntentFilter("android.net.wifi.SCAN_RESULTS"));
+            this.ga = 1;
+            v0 = Class.forName("android.net.wifi.WifiManager").getDeclaredField("mService");
+            if(v0 != 0) {
+                v0.setAccessible(1);
+                this.f3 = v0.get(this.f7);
+                v0 = this.f3.getClass();
+                v2 = new Class[1];
+                v2[0] = Boolean.TYPE;
+                this.f9 = v0.getDeclaredMethod("startScan", v2);
+                if(this.f9 != 0) {
+                    this.f9.setAccessible(1);
+                }
+            }
+        }
+        return;
+    }
+
+Lcom/wisorg/fzdx/application/LauncherApplication;->registerReceiver.java:private void registerReceiver()
+    private void registerReceiver()
+    {
+        v0 = new android.content.IntentFilter();
+        v0.addAction("android.intent.action.PACKAGE_ADDED");
+        v0.addAction("android.intent.action.PACKAGE_REMOVED");
+        v0.addDataScheme("package");
+        v1 = new android.content.IntentFilter();
+        v1.addAction("android.intent.action.HYBIRD_INSTALL_COMPLETE");
+        this.mInstalledReceiver = new com.wisorg.fzdx.application.LauncherApplication$InstalledReceiver(this, 0);
+        this.registerReceiver(this.mInstalledReceiver, v0);
+        this.registerReceiver(this.mInstalledReceiver, v1);
+        this.mDownloadChangeObserver = new com.wisorg.fzdx.application.LauncherApplication$DownloadChangeObserver(this, this.mHandler);
+        this.getContentResolver().registerContentObserver(com.wisorg.providers.downloads.Downloads.CONTENT_URI, 1, this.mDownloadChangeObserver);
+        this.getContentResolver().registerContentObserver(com.wisorg.fzdx.provider.PlatformSettings$Favorites.CONTENT_URI, 1, this.mFavoritesObserver);
+        return;
+    }
+
+Lcom/baidu/location/h;-><init>.java:p8.registerReceiver(this.bw, new android.content.IntentFilter("com.baidu.locTest.LocationServer"));
+    public h(android.content.Context p8)
+    {
+        this.bM = new StringBuilder().append(com.baidu.location.h.L).append("/vm.dat").toString();
+        this.bt = 86100000.0;
+        this.bx = 200;
+        this.bu = 0;
+        this.bw = 0;
+        this.bJ = 0;
+        this.bA = 0;
+        this.bF = 0.0;
+        v0 = new long[20];
+        this.bn = v0;
+        this.bs = 0;
+        this.bG = 0;
+        this.bC = 0;
+        this.bv = 1;
+        this.bp = 0;
+        this.bo = 0;
+        this.bz = 0;
+        this.bH = 0;
+        this.by = 0;
+        this.bq = 1;
+        this.bA = p8;
+        this.by = new com.baidu.location.h$1(this);
+        this.bF = System.currentTimeMillis();
+        this.bu = p8.getSystemService("alarm");
+        this.bw = new com.baidu.location.h$a(this);
+        p8.registerReceiver(this.bw, new android.content.IntentFilter("com.baidu.locTest.LocationServer"));
+        this.bJ = android.app.PendingIntent.getBroadcast(p8, 0, new android.content.Intent("com.baidu.locTest.LocationServer"), 3.85185988877e-34);
+        this.bu.setRepeating(2, com.baidu.location.b.aJ, 0, com.baidu.location.b.aJ, v5, this.bJ);
+        p8.registerReceiver(this.bw, new android.content.IntentFilter("android.intent.action.BATTERY_CHANGED"));
+        return;
+    }
+
+Lcom/wisorg/fzdx/activity/MainActivity;->onCreate.java:this.registerReceiver(this.mNoticeReceiver, v1);
+    public void onCreate(android.os.Bundle p9)
+    {
+        super.onCreate(p9);
+        if(p9 != 0) {
+            this.mContent = this.getSupportFragmentManager().getFragment(p9, "mContent");
+        }
+        this.mConfig = this.getConfig();
+        this.width = this.getWindowManager().getDefaultDisplay().getWidth();
+        this.sm = this.getSlidingMenu();
+        this.sm.setShadowWidthRes(1.83434051608e+38);
+        this.sm.setShadowDrawable(1.72804852031e+38);
+        this.sm.setBehindOffset(((int) (((double) this.getWindowManager().getDefaultDisplay().getWidth()) * 0.3125)));
+        this.sm.setFadeDegree(0.34999999404);
+        this.sm.setTouchModeAbove(1);
+        this.sm.setMode(0);
+        if(this.mContent == 0) {
+            this.mContent = new com.wisorg.fzdx.activity.MainFragment();
+        }
+        this.setContentView(1.7412896886e+38);
+        this.getSupportFragmentManager().beginTransaction().replace(1.78117829227e+38, this.mContent).commit();
+        this.setBehindContentView(1.74128989142e+38);
+        this.findView();
+        if(com.wisorg.identity.AuthHelper.getInstance(this.switchBehind(this.userHome.getId())).isVisitor() == 0) {
+            this.getData();
+        } else {
+            this.logOut();
+        }
+        this.update();
+        this.addListener();
+        v1 = new android.content.IntentFilter();
+        v1.addAction("wisorg.action.ACTION_NOTICE");
+        v1.addAction("wisorg.action.ACTION_NOTICE_RESET");
+        this.registerReceiver(this.mNoticeReceiver, v1);
+        this.mConfig.setBoolean("PREFERENCE_MAIN_ACTIVITY_LOAD", Boolean.valueOf(1));
+        v0 = this.getIntent().getExtras();
+        if(v0 != 0) {
+            this.mPushEntity = v0.getSerializable("EXTRA_NOTICE");
+            if(this.mPushEntity != 0) {
+                this.doActivity(com.wisorg.fzdx.activity.ControlActvity, v0);
+            }
+        }
+        return;
+    }
+
+Lcom/wisorg/downloadprovider/DownloadProviderActivity;->onCreate.java:this.registerReceiver(this.mReceiver, new android.content.IntentFilter("android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED"));
+    public void onCreate(android.os.Bundle p4)
+    {
+        super.onCreate(p4);
+        this.setContentView(com.wisorg.downloadprovider.R$layout.main);
+        this.mDownloadManager = this.getApplication().getDownloadManager();
+        this.buildComponents();
+        this.startDownloadService();
+        this.mReceiver = new com.wisorg.downloadprovider.DownloadProviderActivity$1(this);
+        this.registerReceiver(this.mReceiver, new android.content.IntentFilter("android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED"));
+        return;
+    }
+
+Lcom/wisorg/fzdx/application/LauncherApplication;->registerReceiver.java:this.registerReceiver(this.mInstalledReceiver, v1);
+    private void registerReceiver()
+    {
+        v0 = new android.content.IntentFilter();
+        v0.addAction("android.intent.action.PACKAGE_ADDED");
+        v0.addAction("android.intent.action.PACKAGE_REMOVED");
+        v0.addDataScheme("package");
+        v1 = new android.content.IntentFilter();
+        v1.addAction("android.intent.action.HYBIRD_INSTALL_COMPLETE");
+        this.mInstalledReceiver = new com.wisorg.fzdx.application.LauncherApplication$InstalledReceiver(this, 0);
+        this.registerReceiver(this.mInstalledReceiver, v0);
+        this.registerReceiver(this.mInstalledReceiver, v1);
+        this.mDownloadChangeObserver = new com.wisorg.fzdx.application.LauncherApplication$DownloadChangeObserver(this, this.mHandler);
+        this.getContentResolver().registerContentObserver(com.wisorg.providers.downloads.Downloads.CONTENT_URI, 1, this.mDownloadChangeObserver);
+        this.getContentResolver().registerContentObserver(com.wisorg.fzdx.provider.PlatformSettings$Favorites.CONTENT_URI, 1, this.mFavoritesObserver);
+        return;
+    }
+
+Lcom/baidu/location/aq;->if.java:p4.registerReceiver(this.iI, new android.content.IntentFilter("com.baidu.locsdk.geofence.geofencestrategyservice"));
+    public void if(android.content.Context p4, android.os.Message p5)
+    {
+        if(!this.iA) {
+            this.iQ = p5.replyTo;
+            this.iA = 1;
+            this.iI = new com.baidu.location.aq$c(this);
+            p4.registerReceiver(this.iI, new android.content.IntentFilter("com.baidu.locsdk.geofence.geofencestrategyservice"));
+            this.if(p4, 0);
+        }
+        return;
+    }
+
+Lcom/wisorg/fzdx/application/LauncherApplication;->registerReceiver.java:this.registerReceiver(this.mInstalledReceiver, v0);
+    private void registerReceiver()
+    {
+        v0 = new android.content.IntentFilter();
+        v0.addAction("android.intent.action.PACKAGE_ADDED");
+        v0.addAction("android.intent.action.PACKAGE_REMOVED");
+        v0.addDataScheme("package");
+        v1 = new android.content.IntentFilter();
+        v1.addAction("android.intent.action.HYBIRD_INSTALL_COMPLETE");
+        this.mInstalledReceiver = new com.wisorg.fzdx.application.LauncherApplication$InstalledReceiver(this, 0);
+        this.registerReceiver(this.mInstalledReceiver, v0);
+        this.registerReceiver(this.mInstalledReceiver, v1);
+        this.mDownloadChangeObserver = new com.wisorg.fzdx.application.LauncherApplication$DownloadChangeObserver(this, this.mHandler);
+        this.getContentResolver().registerContentObserver(com.wisorg.providers.downloads.Downloads.CONTENT_URI, 1, this.mDownloadChangeObserver);
+        this.getContentResolver().registerContentObserver(com.wisorg.fzdx.provider.PlatformSettings$Favorites.CONTENT_URI, 1, this.mFavoritesObserver);
+        return;
+    }
+
+Lcom/baidu/location/u;->do.java:this.ff.registerReceiver(this.fn, new android.content.IntentFilter("android.com.baidu.location.TIMER.NOTIFY"));
+    public int do(com.baidu.location.BDNotifyListener p13)
+    {
+        if(this.fk == 0) {
+            this.fk = new java.util.ArrayList();
+        }
+        this.fk.add(p13);
+        p13.isAdded = 1;
+        p13.mNotifyCache = this;
+        if(this.fs) {
+            this.ff.registerReceiver(this.fn, new android.content.IntentFilter("android.com.baidu.location.TIMER.NOTIFY"));
+            this.fs = 1;
+        }
+        if(p13.mCoorType != 0) {
+            v1 = "gcj02";
+            if(p13.mCoorType.equals("gcj02") == 0) {
+                p13.mLongitude = com.baidu.location.Jni.if(v0, p13.mLatitude, new StringBuilder().append(p13.mCoorType).append("2gcj").toString());
+                v1 = v0[0];
+                p13.mLongitudeC = v1;
+                p13.mLatitudeC = v0[1];
+            }
+            if((this.fl != 0) && ((System.currentTimeMillis() - this.fr) <= 30000.0)) {
+                v8 = new float[1];
+                android.location.Location.distanceBetween(this.fl.getLatitude(), v1, this.fl.getLongitude(), "android.com.baidu.location.TIMER.NOTIFY", p13.mLatitudeC, "2gcj", p13.mLongitudeC, v7, v8);
+                v0 = ((v8[0] - p13.mRadius) - this.fl.getRadius());
+                if(v0 <= 0) {
+                    if(p13.Notified < 3) {
+                        p13.Notified = (p13.Notified + 1);
+                        p13.onNotify(this.fl, v8[0]);
+                        if(p13.Notified < 3) {
+                            this.fp = 1;
+                        }
+                    }
+                } else {
+                    if(v0 < this.fo) {
+                        this.fo = v0;
+                    }
+                }
+            } else {
+                this.ft.requestNotifyLocation();
+            }
+            this.aP();
+        }
+        return 1;
+    }
+
+Lcom/baidu/location/h;-><init>.java:p8.registerReceiver(this.bw, new android.content.IntentFilter("android.intent.action.BATTERY_CHANGED"));
+    public h(android.content.Context p8)
+    {
+        this.bM = new StringBuilder().append(com.baidu.location.h.L).append("/vm.dat").toString();
+        this.bt = 86100000.0;
+        this.bx = 200;
+        this.bu = 0;
+        this.bw = 0;
+        this.bJ = 0;
+        this.bA = 0;
+        this.bF = 0.0;
+        v0 = new long[20];
+        this.bn = v0;
+        this.bs = 0;
+        this.bG = 0;
+        this.bC = 0;
+        this.bv = 1;
+        this.bp = 0;
+        this.bo = 0;
+        this.bz = 0;
+        this.bH = 0;
+        this.by = 0;
+        this.bq = 1;
+        this.bA = p8;
+        this.by = new com.baidu.location.h$1(this);
+        this.bF = System.currentTimeMillis();
+        this.bu = p8.getSystemService("alarm");
+        this.bw = new com.baidu.location.h$a(this);
+        p8.registerReceiver(this.bw, new android.content.IntentFilter("com.baidu.locTest.LocationServer"));
+        this.bJ = android.app.PendingIntent.getBroadcast(p8, 0, new android.content.Intent("com.baidu.locTest.LocationServer"), 3.85185988877e-34);
+        this.bu.setRepeating(2, com.baidu.location.b.aJ, 0, com.baidu.location.b.aJ, v5, this.bJ);
+        p8.registerReceiver(this.bw, new android.content.IntentFilter("android.intent.action.BATTERY_CHANGED"));
+        return;
+    }
+
+Lcom/wisorg/fzdx/application/LauncherApplication;->onCreate.java:this.registerReceiver();
+    public void onCreate()
+    {
+        super.onCreate();
+        this.onCreateApplication();
+        this.registerReceiver();
+        return;
+    }
+
