@@ -6,16 +6,16 @@
 > api调用分析.在api_reach_list可以添加需要检测的api调用，写法如smali语法Landroid/content/Intent;->getStringExtra
 
 
-# 运行
+# run
     python staticaudit.py -f apk_path -m mode [1:start api_misuse audit 2:start reach_api analysis]
 
-# 结果
+# result
 
 > /sampleapk/audit_res_com.wisorg.fzdx 简单静态审计结果
 
 > /sampleapk/reach_res_com.wisorg.fzdx 简单api调用结果
 
-# 备注
+# ps
 
 > 误报较高，仅仅用于快速定位特征 
     
