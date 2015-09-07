@@ -1,9 +1,21 @@
+'''
+Created on Jun 3, 2014
+
+@author: Xbalien
+'''
+
+
 import sys
 import staticuitls
+import os
+from optparse import OptionParser
 from manifestparser import ManifestParser
 from sourceaudit import SourceAudit
+from showaudit import ShowSourceAudit
+from showaudit import ShowMenifestAudit
+from showaudit import ShowReachAPI
 
-
+DIR = r"sampleapk/"
 
 def manifest_config_attacksurface(apk):
 
@@ -12,7 +24,6 @@ def manifest_config_attacksurface(apk):
     manifestparser = ManifestParser(apk)
     manifestparser.analyzer_manifest()
     manifestparser.attacksurface()
-    manifestparser.xml
     return manifestparser.get_exported(), allow_backup, debuggable
 
 def source_attacksurface(d, dx):
@@ -27,91 +38,49 @@ def source_attacksurface(d, dx):
     return sourceaudit.get_webview_res(), sourceaudit.get_register_receiver(), \
         sourceaudit.get_https(), sourceaudit.get_intent_scheme(), sourceaudit.get_logs()
 
+def reach_api_analysis(d, dx):
+
+    sourceaudit = SourceAudit(d, dx)
+    res = sourceaudit.reach_api_analysis()
+    return res
 
 
 if __name__ == '__main__':
 
-    res = ""
-    apk, d, dx = staticuitls.AnalyzeAPK(sys.argv[1],decompiler="dad")
-    attacksurface, allow_backup, debuggable = manifest_config_attacksurface(apk)
-    webview, register_receiver, https_res, intent_scheme_res, log_res = source_attacksurface(d, dx)
-    print "################################ webview ######################################"
-    res += ("################################ webview ######################################" + '\n')
-    if webview:
-        for key in webview:
-            print key
-            print webview[key]
-            res += (key + '\n') + webview[key]
-    else:
-        print "None"
+    usage = "usage: %prog -f apk_path -m mode [1:start api_misuse audit 2:start reach_api analysis] "
 
-    print "################################ https ######################################" 
-    res += ("################################ https ######################################" + '\n')
-    if https_res:
-        for key in https_res:
-            print key
-            print https_res[key]
-            res += (key + '\n') + https_res[key]
-    else:
-        print "None"
+    parser = OptionParser(usage)
+    parser.add_option("-f", "--apk_path", dest="apk_path", help="apk name to static audit")
+    parser.add_option("-m", "--mode", dest="mode", help="which mode to running")
 
+    (options, args) = parser.parse_args()
 
+    print "start analysis ..."
 
-    print "################################ intent_scheme ######################################" 
-    res += ("################################ intent_scheme ######################################" + '\n')
-    if intent_scheme_res:
-        for key in intent_scheme_res:
-            print key
-            print intent_scheme_res[key]
-            res += (key + '\n') + intent_scheme_res[key]
-    else:
-        print "None"
+    if options.mode == "1":
+        print "start api_misuse audit ..."
+        apk_path = options.apk_path
+        
+        apk, d, dx = staticuitls.AnalyzeAPK(apk_path, decompiler="dad")
+        attacksurface, allow_backup, debuggable = manifest_config_attacksurface(apk)
+        webview, register_receiver, https_res, intent_scheme_res, log_res = source_attacksurface(d, dx)
+
+        fd = open(DIR + 'audit_res_' + apk.package, 'wb')
+
+        ShowSourceAudit(fd, webview, register_receiver, https_res, intent_scheme_res, log_res).show()
+        ShowMenifestAudit(fd, attacksurface, allow_backup, debuggable).show()
+
+        fd.close()
 
 
-    print "################################ logcat ######################################" 
-    res += ("################################ logcat ######################################" + '\n')
-    if log_res:
-        for key in log_res:
-            print key
-            print log_res[key]
-            res += (key + '\n') + log_res[key]
-    else:
-        print "None"
+    if options.mode == "2":
+        print "start reach_api analysis ..."
+        apk_path = options.apk_path
+        apk, d, dx = staticuitls.AnalyzeAPK(apk_path, decompiler="dad")
 
+        fd = open(DIR + 'reach_res_' + apk.package, 'wb')
+        ShowReachAPI(fd, reach_api_analysis(d, dx)).show()
+        fd.close()
 
-
-    print "################################ manifest_config ######################################" 
-    if allow_backup:
-        print "allow_backup : %s" % allow_backup
-    else :
-        print "allow_backup : true" 
-
-    if debuggable:
-        print "debuggable : %s" % debuggable
-    else :
-        print "debuggable : false"
-
-
-    for component_type in attacksurface:
-        print "################################### %s ###################################" % (component_type.upper())
-        res += (component_type.upper() + '\n')
-        for component in attacksurface[component_type]:
-            print component
-            res += (component + '\n')
-
-
-
-    print "################################ register_receiver ######################################" 
-    res += ("################################ register_receiver ######################################" + '\n')
-    if register_receiver:
-        for key in register_receiver:
-            print key
-            print register_receiver[key]
-            res += (key + '\n') + register_receiver[key]
-    else:
-        print "None"
-    #fd = open(sys.argv[2], 'w')
-    #fd.write(res)
-    #fd.close()
-
+    print "ending ..."
 

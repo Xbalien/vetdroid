@@ -7,7 +7,6 @@ Lcom/handmark/pulltorefresh/library/extras/PullToRefreshWebView2;->createRefresh
         v0.addJavascriptInterface(this.mJsCallback, "ptr");
         return v0;
     }
-
 Lcom/wisorg/jslibrary/DetailActivity;->setWebView.java:this.mWebView.addJavascriptInterface(this, "android");
     private void setWebView()
     {
@@ -31,7 +30,6 @@ Lcom/wisorg/jslibrary/DetailActivity;->setWebView.java:this.mWebView.addJavascri
         this.mWebView.loadUrl(this.mUrl);
         return;
     }
-
 ################################ https ######################################
 Lcom/loopj/android/http/MySSLSocketFactory;->getFixedSocketFactory.java:v0.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
     public static org.apache.http.conn.ssl.SSLSocketFactory getFixedSocketFactory()
@@ -40,30 +38,10 @@ Lcom/loopj/android/http/MySSLSocketFactory;->getFixedSocketFactory.java:v0.setHo
         v0.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
         return v0;
     }
-
 ################################ intent_scheme ######################################
 None
 ################################ logcat ######################################
 None
-################################ manifest_config ######################################
-allow_backup : true
-debuggable : false
-################################### PROVIDER ###################################
-com.wisorg.providers.downloads.DownloadProvider
-com.wisorg.fzdx.provider.PlatformProvider
-################################### RECEIVER ###################################
-com.wisorg.fzdx.receiver.AlarmReceiver
-com.wisorg.fzdx.receiver.BootReceiver
-################################### SERVICE ###################################
-################################### ACTIVITY ###################################
-com.wisorg.jslibrary.HybirdInstallActivity
-com.wisorg.identity.view.LoginActivity
-com.example.mydemo2.wxapi.WXEntryActivity
-com.wisorg.fzdx.activity.notice.NoticeSubscribeListActivity
-com.wisorg.fzdx.activity.weibo.WeiboSubscribeListActivity
-com.wisorg.fzdx.activity.ControlActvity
-com.wisorg.fzdx.activity.SplashActivity
-com.wisorg.fzdx.activity.news.NewsAggregationMainActivity
 ################################ register_receiver ######################################
 Lcom/wisorg/fzdx/activity/StyleTabMainActivity;->onCreate.java:this.registerReceiver(this.mNoticeReceiver, v1);
     public void onCreate(android.os.Bundle p6)
@@ -88,7 +66,6 @@ Lcom/wisorg/fzdx/activity/StyleTabMainActivity;->onCreate.java:this.registerRece
         }
         return;
     }
-
 Lorg/androidpn/push/PushService;->registerConnectivityReceiver.java:this.registerReceiver(this.connectivityReceiver, v0);
     private void registerConnectivityReceiver()
     {
@@ -100,7 +77,6 @@ Lorg/androidpn/push/PushService;->registerConnectivityReceiver.java:this.registe
         this.registerReceiver(this.connectivityReceiver, v0);
         return;
     }
-
 Lcom/baidu/location/d;->do.java:com.baidu.location.f.getServiceContext().registerReceiver(this.try, v0);
     public void do()
     {
@@ -113,7 +89,6 @@ Lcom/baidu/location/d;->do.java:com.baidu.location.f.getServiceContext().registe
         this.if = 1;
         return;
     }
-
 Lcom/baidu/location/ai;->a9.java:com.baidu.location.f.getServiceContext().registerReceiver(this.gc, new android.content.IntentFilter("android.net.wifi.SCAN_RESULTS"));
     public void a9()
     {
@@ -137,7 +112,6 @@ Lcom/baidu/location/ai;->a9.java:com.baidu.location.f.getServiceContext().regist
         }
         return;
     }
-
 Lcom/wisorg/fzdx/application/LauncherApplication;->registerReceiver.java:private void registerReceiver()
     private void registerReceiver()
     {
@@ -155,7 +129,6 @@ Lcom/wisorg/fzdx/application/LauncherApplication;->registerReceiver.java:private
         this.getContentResolver().registerContentObserver(com.wisorg.fzdx.provider.PlatformSettings$Favorites.CONTENT_URI, 1, this.mFavoritesObserver);
         return;
     }
-
 Lcom/baidu/location/h;-><init>.java:p8.registerReceiver(this.bw, new android.content.IntentFilter("com.baidu.locTest.LocationServer"));
     public h(android.content.Context p8)
     {
@@ -190,7 +163,6 @@ Lcom/baidu/location/h;-><init>.java:p8.registerReceiver(this.bw, new android.con
         p8.registerReceiver(this.bw, new android.content.IntentFilter("android.intent.action.BATTERY_CHANGED"));
         return;
     }
-
 Lcom/wisorg/fzdx/activity/MainActivity;->onCreate.java:this.registerReceiver(this.mNoticeReceiver, v1);
     public void onCreate(android.os.Bundle p9)
     {
@@ -235,7 +207,6 @@ Lcom/wisorg/fzdx/activity/MainActivity;->onCreate.java:this.registerReceiver(thi
         }
         return;
     }
-
 Lcom/wisorg/downloadprovider/DownloadProviderActivity;->onCreate.java:this.registerReceiver(this.mReceiver, new android.content.IntentFilter("android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED"));
     public void onCreate(android.os.Bundle p4)
     {
@@ -248,7 +219,6 @@ Lcom/wisorg/downloadprovider/DownloadProviderActivity;->onCreate.java:this.regis
         this.registerReceiver(this.mReceiver, new android.content.IntentFilter("android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED"));
         return;
     }
-
 Lcom/wisorg/fzdx/application/LauncherApplication;->registerReceiver.java:this.registerReceiver(this.mInstalledReceiver, v1);
     private void registerReceiver()
     {
@@ -266,7 +236,6 @@ Lcom/wisorg/fzdx/application/LauncherApplication;->registerReceiver.java:this.re
         this.getContentResolver().registerContentObserver(com.wisorg.fzdx.provider.PlatformSettings$Favorites.CONTENT_URI, 1, this.mFavoritesObserver);
         return;
     }
-
 Lcom/baidu/location/aq;->if.java:p4.registerReceiver(this.iI, new android.content.IntentFilter("com.baidu.locsdk.geofence.geofencestrategyservice"));
     public void if(android.content.Context p4, android.os.Message p5)
     {
@@ -279,7 +248,6 @@ Lcom/baidu/location/aq;->if.java:p4.registerReceiver(this.iI, new android.conten
         }
         return;
     }
-
 Lcom/wisorg/fzdx/application/LauncherApplication;->registerReceiver.java:this.registerReceiver(this.mInstalledReceiver, v0);
     private void registerReceiver()
     {
@@ -297,7 +265,6 @@ Lcom/wisorg/fzdx/application/LauncherApplication;->registerReceiver.java:this.re
         this.getContentResolver().registerContentObserver(com.wisorg.fzdx.provider.PlatformSettings$Favorites.CONTENT_URI, 1, this.mFavoritesObserver);
         return;
     }
-
 Lcom/baidu/location/u;->do.java:this.ff.registerReceiver(this.fn, new android.content.IntentFilter("android.com.baidu.location.TIMER.NOTIFY"));
     public int do(com.baidu.location.BDNotifyListener p13)
     {
@@ -343,7 +310,6 @@ Lcom/baidu/location/u;->do.java:this.ff.registerReceiver(this.fn, new android.co
         }
         return 1;
     }
-
 Lcom/baidu/location/h;-><init>.java:p8.registerReceiver(this.bw, new android.content.IntentFilter("android.intent.action.BATTERY_CHANGED"));
     public h(android.content.Context p8)
     {
@@ -378,7 +344,6 @@ Lcom/baidu/location/h;-><init>.java:p8.registerReceiver(this.bw, new android.con
         p8.registerReceiver(this.bw, new android.content.IntentFilter("android.intent.action.BATTERY_CHANGED"));
         return;
     }
-
 Lcom/wisorg/fzdx/application/LauncherApplication;->onCreate.java:this.registerReceiver();
     public void onCreate()
     {
@@ -387,4 +352,22 @@ Lcom/wisorg/fzdx/application/LauncherApplication;->onCreate.java:this.registerRe
         this.registerReceiver();
         return;
     }
-
+################################ manifest_config ######################################
+allow_backup : true
+debuggable : false
+################################### PROVIDER ###################################
+com.wisorg.providers.downloads.DownloadProvider
+com.wisorg.fzdx.provider.PlatformProvider
+################################### RECEIVER ###################################
+com.wisorg.fzdx.receiver.AlarmReceiver
+com.wisorg.fzdx.receiver.BootReceiver
+################################### SERVICE ###################################
+################################### ACTIVITY ###################################
+com.wisorg.jslibrary.HybirdInstallActivity
+com.wisorg.identity.view.LoginActivity
+com.example.mydemo2.wxapi.WXEntryActivity
+com.wisorg.fzdx.activity.notice.NoticeSubscribeListActivity
+com.wisorg.fzdx.activity.weibo.WeiboSubscribeListActivity
+com.wisorg.fzdx.activity.ControlActvity
+com.wisorg.fzdx.activity.SplashActivity
+com.wisorg.fzdx.activity.news.NewsAggregationMainActivity

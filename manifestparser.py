@@ -1,7 +1,7 @@
 '''
 Created on Jun 1, 2014
 
-@author: lyx
+@author: Xbalien
 '''
 
 from androguard.core.bytecodes.apk import APK
@@ -19,7 +19,9 @@ class ManifestParser(object):
         self.xml = apk.xml['AndroidManifest.xml']
         self.package = apk.package
         self.parse_res = {}
-        
+        self.androidversion = {}
+        self.__comp_info = {}
+        self.__components = []
         self.__comp_info = {}
         self.__providers = {}
         self.__activitys = {}
@@ -30,13 +32,27 @@ class ManifestParser(object):
 
 
     def analyzer_manifest(self):
-        "Parse AndroidManifest.xml all component"               
+        "Parse AndroidManifest.xml all component"             
         self.analyzer_component('activity')
         self.analyzer_component('service')
         self.analyzer_component('provider')
         self.analyzer_component('receiver')
+    
+        self.__components = self.__activitys.keys()
+        self.__components.extend(self.__services.keys())
+        self.__components.extend(self.__providers.keys())
+        self.__components.extend(self.__receivers.keys())
+
         self.__format_result()
 
+
+    def __implicit_exported(self, ilist):
+        "implicit_exported test"
+        for item in ilist:
+            alist = item.getElementsByTagName('action')
+            if alist:
+                return True
+        return False
 
     def __ifilter(self, ilist):
         "Parse Intent-filter detail"
@@ -91,10 +107,15 @@ class ManifestParser(object):
         c_list = self.xml.getElementsByTagName(component)
         for item in c_list:
             name = item.getAttribute('android:name')
+            if name.startswith('.'):
+                name = self.package + name
             exported = item.getAttribute('android:exported')
             if not exported:
+
                 son = item.getElementsByTagName('intent-filter')
-                if son:
+                #if has intent-filter action
+                if self.__implicit_exported(son):
+
                     exported = 'true'
                 else:
                     exported = 'false'
@@ -167,6 +188,35 @@ class ManifestParser(object):
         self.__comp_info['provider'] = self.__providers
         self.__comp_info['receiver'] = self.__receivers
         self.parse_res[self.package] = self.__comp_info
+
+
+    def get_package(self):
+        """
+            Return the name of the package
+            :rtype: string
+        """
+        return self.package
+
+    def get_androidversion_code(self):
+        """
+            Return the android version code
+            :rtype: string
+        """
+        return self.androidversion["Code"]
+
+    def get_androidversion_name(self):
+        """
+            Return the android version name
+            :rtype: string
+        """
+        return self.androidversion["Name"]
+
+    def get_AndroidManifest(self):
+        """
+            Return the Android Manifest XML file
+            :rtype: xml object
+        """
+        return self.xml
     
     def get_perm_info(self):
         '''
@@ -174,6 +224,13 @@ class ManifestParser(object):
             :rtype a dictionnary
         '''
         return self.__permissions
+
+    def get_activitys(self):
+        '''
+            Return this APK declaration activitys name
+            :rtype a list
+        '''
+        return self.__activitys.keys()
     
     def get_activitys_info(self):
         '''
@@ -182,6 +239,13 @@ class ManifestParser(object):
         '''
         return self.__activitys
     
+    def get_services(self):
+        '''
+            Return this APK declaration services name
+            :rtype a list
+        '''
+        return self.__services.keys()
+
     def get_services_info(self):
         '''
             Return this APK declaration services information
@@ -189,12 +253,26 @@ class ManifestParser(object):
         '''
         return self.__services
     
+    def get_providers(self):
+        '''
+            Return this APK declaration providers name
+            :rtype a list
+        '''
+        return self.__providers.keys()
+
     def get_providers_info(self):
         '''
             Return this APK declaration providers information
             :rtype a dictionnary
         '''
         return self.__providers
+
+    def get_receivers(self):
+        '''
+            Return this APK declaration receivers name
+            :rtype a list
+        '''
+        return self.__providers.keys()
     
     def get_receivers_info(self):
         '''
@@ -203,19 +281,50 @@ class ManifestParser(object):
         '''
         return self.__receivers
     
-    def get_all(self):
+
+    def get_all_components(self):
+        '''
+            Return this APK declaration all components name
+            :rtype a list
+        '''
+        return self.__components
+
+
+    def get_all_info(self):
+
         '''
             Return this APK declaration all components information
             :rtype a dictionnary
         '''
         return self.parse_res
     
+
     def get_exported(self):
         '''
             Return this APK declaration all exported components
             :rtype a dictionnary
         '''
         return self.__exported
+
+    def is_declaration_component(self, component):
+        '''
+            Return declaration state for given component
+            :rtype a boolean
+        '''
+        if component in self.__components:
+            return True
+        else:
+            return False
+
+    def is_exported_component(self, component):
+        '''
+            Return exported state for given component
+            :rtype a boolean
+        '''
+        for (component_type, names) in self.__exported.items():
+            if component in names:
+                return True
+        return False
 
 
 

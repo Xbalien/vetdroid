@@ -1,8 +1,16 @@
+'''
+Created on Jun 3, 2014
+
+@author: Xbalien
+'''
+
+
 import re
 from androguard.core.bytecodes.apk import APK
 from androguard.core.bytecodes import dvm
 from androguard.core.analysis import analysis
 
+REACH_API_LIST = r"api_reach_list"
 
 class SourceAudit(object):
     '''
@@ -23,6 +31,8 @@ class SourceAudit(object):
         self.register_receiver = {}
         self.https = {}
         self.log = {}
+        self.reach_api_res = {}
+        self.reach_api_list = []
     
     def webview_audit(self):
         self.webview = self.__mathods_search(".", "addJavascriptInterface", ".")
@@ -40,6 +50,25 @@ class SourceAudit(object):
         #self.log = self.__mathods_search("Landroid/util/Log;", "i", ".")
         pass
 
+    def reach_api_analysis(self):
+        res = ""
+        with open(REACH_API_LIST,'rb') as fd:
+            reach_api_list = fd.readlines()
+
+        for reach_api in reach_api_list:
+            api_detail = reach_api.split("->")
+            package_name = api_detail[0]
+            method_name = api_detail[1]
+            res += ("################################### %s ###################################" % (reach_api) + '\n')
+
+            reach = self.__mathods_search(package_name, method_name, ".")
+            if reach:
+                for key in reach:
+                    res += (key + '\n') + reach[key]
+            else:
+                res += "None\n"
+
+        return res
 
 
     

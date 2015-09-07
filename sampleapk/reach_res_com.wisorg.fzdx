@@ -1,0 +1,11 @@
+################################### Landroid/content/Intent;->getStringExtra
+ ###################################
+None
+################################### Lorg/apache/http/conn/ssl/SSLSocketFactory;->setHostnameVerifier ###################################
+Lcom/loopj/android/http/MySSLSocketFactory;->getFixedSocketFactory.java:v0.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+    public static org.apache.http.conn.ssl.SSLSocketFactory getFixedSocketFactory()
+    {
+        v0 = new com.loopj.android.http.MySSLSocketFactory(com.loopj.android.http.MySSLSocketFactory.getKeystore());
+        v0.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+        return v0;
+    }

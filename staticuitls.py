@@ -1,3 +1,10 @@
+'''
+Created on Jun 1, 2014
+
+@author: Xbalien
+'''
+
+
 from androguard.core import *
 from androguard.core.androgen import *
 from androguard.core.androconf import *

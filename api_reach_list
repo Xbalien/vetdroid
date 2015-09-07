@@ -1,0 +1,2 @@
+Landroid/content/Intent;->getStringExtra
+Lorg/apache/http/conn/ssl/SSLSocketFactory;->setHostnameVerifier
