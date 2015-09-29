@@ -1,0 +1,14 @@
+################################### Landroid/content/Intent;->getSerializableExtra
+ ###################################
+None
+################################### Landroid/content/Intent;->getParcelable
+ ###################################
+None
+################################### Ljava/util/zip/ZipEntry;->getName
+ ###################################
+None
+################################### Ldalvik/system/DexClassLoader;-><init>
+ ###################################
+None
+################################### Landroid/app/DownloadManager$Request;-><init> ###################################
+None

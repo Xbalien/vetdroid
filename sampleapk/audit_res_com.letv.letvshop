@@ -1,0 +1,319 @@
+################################ webview ######################################
+Lcom/handmark/pulltorefresh/library/extras/PullToRefreshWebView2;->createRefreshableView.java:v0.addJavascriptInterface(this.mJsCallback, "ptr");
+    protected android.webkit.WebView createRefreshableView(android.content.Context p4, android.util.AttributeSet p5)
+    {
+        v0 = super.createRefreshableView(p4, p5);
+        this.mJsCallback = new com.handmark.pulltorefresh.library.extras.PullToRefreshWebView2$JsValueCallback(this);
+        v0.addJavascriptInterface(this.mJsCallback, "ptr");
+        return v0;
+    }
+Lcom/letv/letvshop/model/web_model/FirstWebActivity;->b.java:this.a.addJavascriptInterface(new com.letv.letvshop.model.web_model.FirstWebActivity$InJavaScriptLocalObj(this), "bindPhone");
+    private void b()
+    {
+        this.a.setVerticalScrollBarEnabled(0);
+        this.a.setHorizontalScrollBarEnabled(0);
+        this.a.setDomStorageEnabled(1);
+        this.a.requestFocus();
+        this.a.setLoadWithOverviewMode(1);
+        this.a.setBuiltInZoomControls(1);
+        this.a.setWebViewClient(new com.letv.letvshop.model.web_model.FirstWebActivity$MyWebViewClient(this));
+        if(this.o != 27) {
+            this.a.addJavascriptInterface(new com.letv.letvshop.model.web_model.FirstWebActivity$InJavaScriptLocalObj(this), "login");
+        } else {
+            this.a.addJavascriptInterface(new com.letv.letvshop.model.web_model.FirstWebActivity$InJavaScriptLocalObj(this), "bindPhone");
+        }
+        return;
+    }
+Lcom/letv/letvshop/view/MyWebView;->addJavascriptInterface.java:this.mWebView.addJavascriptInterface(p2, p3);
+    public void addJavascriptInterface(Object p2, String p3)
+    {
+        this.mWebView.addJavascriptInterface(p2, p3);
+        return;
+    }
+Lcom/letv/letvshop/view/MyWebView;->addJavascriptInterface.java:public void addJavascriptInterface(Object p2, String p3)
+    public void addJavascriptInterface(Object p2, String p3)
+    {
+        this.mWebView.addJavascriptInterface(p2, p3);
+        return;
+    }
+Lcom/letv/letvshop/model/web_model/FirstWebActivity;->b.java:this.a.addJavascriptInterface(new com.letv.letvshop.model.web_model.FirstWebActivity$InJavaScriptLocalObj(this), "login");
+    private void b()
+    {
+        this.a.setVerticalScrollBarEnabled(0);
+        this.a.setHorizontalScrollBarEnabled(0);
+        this.a.setDomStorageEnabled(1);
+        this.a.requestFocus();
+        this.a.setLoadWithOverviewMode(1);
+        this.a.setBuiltInZoomControls(1);
+        this.a.setWebViewClient(new com.letv.letvshop.model.web_model.FirstWebActivity$MyWebViewClient(this));
+        if(this.o != 27) {
+            this.a.addJavascriptInterface(new com.letv.letvshop.model.web_model.FirstWebActivity$InJavaScriptLocalObj(this), "login");
+        } else {
+            this.a.addJavascriptInterface(new com.letv.letvshop.model.web_model.FirstWebActivity$InJavaScriptLocalObj(this), "bindPhone");
+        }
+        return;
+    }
+Lcom/letv/letvshop/model/web_model/j;->b.java:v0.addJavascriptInterface(new com.letv.letvshop.model.web_model.k(this), "");
+    private android.webkit.WebView b()
+    {
+        v2 = 15;
+        v0 = new android.webkit.WebView(this.a);
+        v0.setLayoutParams(new android.widget.LinearLayout$LayoutParams(v2, v2));
+        v0.getSettings().setJavaScriptEnabled(1);
+        v0.addJavascriptInterface(new com.letv.letvshop.model.web_model.k(this), "");
+        v0.getSettings().setBuiltInZoomControls(1);
+        v0.setWebChromeClient(new com.letv.letvshop.model.web_model.l(this));
+        v0.setWebViewClient(new com.letv.letvshop.model.web_model.m(this));
+        return v0;
+    }
+################################ https ######################################
+Lbb/a;->a.java:v1.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+    public static org.apache.http.client.HttpClient a()
+    {
+        v0 = java.security.KeyStore.getInstance(java.security.KeyStore.getDefaultType());
+        v0.load(0, 0);
+        v1 = new bb.e(v0);
+        v1.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+        v2 = new org.apache.http.params.BasicHttpParams();
+        org.apache.http.params.HttpProtocolParams.setVersion(v2, org.apache.http.HttpVersion.HTTP_1_1);
+        org.apache.http.params.HttpProtocolParams.setContentCharset(v2, "ISO-8859-1");
+        org.apache.http.params.HttpProtocolParams.setUseExpectContinue(v2, 1);
+        org.apache.http.conn.params.ConnManagerParams.setTimeout(v2, 20000.0);
+        org.apache.http.params.HttpConnectionParams.setConnectionTimeout(v2, 20000);
+        org.apache.http.params.HttpConnectionParams.setSoTimeout(v2, 10000);
+        v0 = new org.apache.http.conn.scheme.SchemeRegistry();
+        v0.register(new org.apache.http.conn.scheme.Scheme("http", org.apache.http.conn.scheme.PlainSocketFactory.getSocketFactory(), 80));
+        v0.register(new org.apache.http.conn.scheme.Scheme("https", v1, 443));
+        return new org.apache.http.impl.client.DefaultHttpClient(new org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager(v2, v0), v2);
+    }
+Lt/b;->b.java:v0.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
+    public static t.b b()
+    {
+        if(t.b.b == 0) {
+            v1 = new org.apache.http.params.BasicHttpParams();
+            org.apache.http.params.HttpProtocolParams.setVersion(v1, org.apache.http.HttpVersion.HTTP_1_1);
+            org.apache.http.params.HttpConnectionParams.setStaleCheckingEnabled(v1, 1);
+            v1.setBooleanParameter("http.protocol.expect-continue", 0);
+            org.apache.http.conn.params.ConnManagerParams.setMaxTotalConnections(v1, 50);
+            org.apache.http.conn.params.ConnManagerParams.setMaxConnectionsPerRoute(v1, new org.apache.http.conn.params.ConnPerRouteBean(30));
+            org.apache.http.conn.params.ConnManagerParams.setTimeout(v1, 1000.0);
+            org.apache.http.params.HttpConnectionParams.setConnectionTimeout(v1, 20000);
+            org.apache.http.params.HttpConnectionParams.setSoTimeout(v1, 30000);
+            org.apache.http.params.HttpConnectionParams.setSocketBufferSize(v1, 16384);
+            org.apache.http.params.HttpProtocolParams.setUseExpectContinue(v1, 0);
+            org.apache.http.client.params.HttpClientParams.setRedirecting(v1, 1);
+            org.apache.http.client.params.HttpClientParams.setAuthenticating(v1, 0);
+            org.apache.http.params.HttpProtocolParams.setUserAgent(v1, "msp");
+            v0 = org.apache.http.conn.ssl.SSLSocketFactory.getSocketFactory();
+            v0.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
+            v2 = new org.apache.http.conn.scheme.Scheme("https", v0, 443);
+            v0 = new org.apache.http.conn.scheme.Scheme("http", org.apache.http.conn.scheme.PlainSocketFactory.getSocketFactory(), 80);
+            v3 = new org.apache.http.conn.scheme.SchemeRegistry();
+            v3.register(v2);
+            v3.register(v0);
+            t.b.b = new t.b(new org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager(v1, v3), v1);
+        }
+        return t.b.b;
+    }
+################################ intent_scheme ######################################
+None
+################################ logcat ######################################
+None
+################################ register_receiver ######################################
+Lorg/android/agoo/impl/PushService;->create.java:this.n.registerReceiver(this.E, v0);
+    public void create(android.content.Context p5, cq.b p6)
+    {
+        android.util.Log.w("PushService", ">>> agoo system is creating >>>");
+        com.umeng.message.proguard.cl.a(p5, "agoo.pid");
+        org.android.agoo.impl.PushService.B = com.umeng.message.proguard.bh.a(p5, 600, 0);
+        this.n = p5;
+        com.umeng.message.proguard.aq.a(this.n);
+        com.umeng.message.proguard.aj.a(this.n);
+        this.q = 1;
+        this.o = new android.os.HandlerThread("EASY_SPDY_PROTOCOL_ERROR");
+        this.o.start();
+        this.p = new android.os.Handler(this.o.getLooper(), this);
+        v0 = p5.getPackageName();
+        android.util.Log.w("PushService", new StringBuilder().append("create currentPack=").append(v0).toString());
+        android.util.Log.w("PushService", new StringBuilder().append("getCurrentSudo(context)").append(org.android.agoo.impl.a.a(p5)).toString());
+        v1 = v0.equals(org.android.agoo.impl.a.a(p5));
+        android.util.Log.w("PushService", new StringBuilder().append(v0).append(",  ").append(v1).toString());
+        if(v1 != 0) {
+            org.android.agoo.impl.PushService.B.a();
+        }
+        this.D = p6;
+        this.v = p5.getSystemService("alarm");
+        if(this.A.get() == 0) {
+            this.A.set(1);
+            v0 = new android.content.IntentFilter();
+            v0.addAction("agoo_action_re_election");
+            this.n.registerReceiver(this.E, v0);
+        }
+        this.d();
+        return;
+    }
+Lcom/aps/a;->h.java:this.f.registerReceiver(this.q, v0);
+    private void h()
+    {
+        this.i = com.aps.n.b(this.f, "Lcom/amap/api/maps/MapFragment;");
+        v0 = new android.content.IntentFilter();
+        v0.addAction("android.net.wifi.WIFI_STATE_CHANGED");
+        v0.addAction("android.net.wifi.SCAN_RESULTS");
+        v0.addAction("android.intent.action.SCREEN_ON");
+        v0.addAction("android.intent.action.SCREEN_OFF");
+        v0.addAction("android.intent.action.AIRPLANE_MODE");
+        v0.addAction("android.intent.action.BATTERY_CHANGED");
+        v0.addAction("android.location.GPS_FIX_CHANGE");
+        v0.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        this.f.registerReceiver(this.q, v0);
+        this.q();
+        return;
+    }
+Lcom/letv/component/upgrade/core/upgrade/g;->m.java:this.c.registerReceiver(this.v, v0);
+    private void m()
+    {
+        this.v = new com.letv.component.upgrade.core.upgrade.UpgradeDownloadReceiver(this.ad);
+        v0 = new android.content.IntentFilter();
+        v0.addAction("com.letv.android.client.appupgrade.download.list");
+        this.c.registerReceiver(this.v, v0);
+        this.u = 1;
+        return;
+    }
+Lcom/letv/component/upgrade/core/upgrade/g;->o.java:this.c.registerReceiver(this.x, v0);
+    private void o()
+    {
+        this.x = new com.letv.component.upgrade.core.upgrade.g$b(this);
+        v0 = new android.content.IntentFilter();
+        v0.addAction("android.intent.action.PACKAGE_ADDED");
+        v0.addDataScheme("package");
+        this.c.registerReceiver(this.x, v0);
+        return;
+    }
+Lcom/aps/ac;->a.java:this.a.registerReceiver(p3, v0);
+    private void a(android.content.BroadcastReceiver p3)
+    {
+        if((p3 != 0) && (this.a != 0)) {
+            v0 = new android.content.IntentFilter();
+            v0.addAction("android.net.wifi.SCAN_RESULTS");
+            this.a.registerReceiver(p3, v0);
+        }
+        return;
+    }
+Lcom/easy/android/framework/util/netstate/EANetworkStateReceiver;->registerNetworkStateReceiver.java:p3.getApplicationContext().registerReceiver(com.easy.android.framework.util.netstate.EANetworkStateReceiver.getReceiver(), v0);
+    public static void registerNetworkStateReceiver(android.content.Context p3)
+    {
+        v0 = new android.content.IntentFilter();
+        v0.addAction("ea.android.net.conn.CONNECTIVITY_CHANGE");
+        v0.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        p3.getApplicationContext().registerReceiver(com.easy.android.framework.util.netstate.EANetworkStateReceiver.getReceiver(), v0);
+        return;
+    }
+Lcom/umeng/message/proguard/at;->a.java:this.c.registerReceiver(this.m, this.k);
+    protected varargs void a(String[] p5)
+    {
+        if((this.c != 0) && (this.n)) {
+            this.k = new android.content.IntentFilter();
+            this.k.setPriority(-1000);
+            v1 = p5.length;
+            v0 = 0;
+            while (v0 < v1) {
+                v2 = p5[v0];
+                if(android.text.TextUtils.isEmpty(v2) == 0) {
+                    this.k.addAction(v2);
+                }
+                v0 = (v0 + 1);
+            }
+            this.c.registerReceiver(this.m, this.k);
+            this.n = 1;
+        }
+        return;
+    }
+Lcom/letv/letvshop/service/AccountChangeReceiver;->registerLogon.java:p3.registerReceiver(this, v0);
+    public void registerLogon(android.content.Context p3)
+    {
+        v0 = new android.content.IntentFilter();
+        v0.addAction("android.accounts.LOGIN_ACCOUNTS_CHANGED");
+        v0.addAction("com.letv.android.account.ACTION_LOGOUT");
+        v0.addAction("com.letv.android.account.ACTION_LOGIN");
+        v0.addAction("com.letv.android.account.ACTION_TOKEN_UPDATE");
+        p3.registerReceiver(this, v0);
+        return;
+    }
+Lcom/alipay/sdk/app/i;->e.java:this.b.registerReceiver(this.k, v0);
+    private void e()
+    {
+        v0 = new w.a(this.b);
+        v0.a("Lcom/google/protobuf/b$a", 1, new com.alipay.sdk.app.m(this, v0));
+        this.e = new com.alipay.sdk.util.c();
+        this.e.a(this.g);
+        this.e.b(this.i);
+        this.e.a(new com.alipay.sdk.app.n(this, v0));
+        this.e.b();
+        v0 = new android.content.IntentFilter();
+        v0.addAction("android.intent.action.PACKAGE_ADDED");
+        v0.addDataScheme("package");
+        this.b.registerReceiver(this.k, v0);
+        this.f.postDelayed(this.j, 180000.0);
+        return;
+    }
+Lcom/letv/component/upgrade/core/upgrade/g;->n.java:this.c.registerReceiver(this.w, v0);
+    private void n()
+    {
+        this.w = new com.letv.component.upgrade.core.upgrade.g$a(this);
+        v0 = new android.content.IntentFilter();
+        v0.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        this.c.registerReceiver(this.w, v0);
+        return;
+    }
+Lcom/aps/s;->a.java:this.r.registerReceiver(this.I, v0);
+    public void a()
+    {
+        if((this.l) && ((this.t != 0) && (com.aps.s.a))) {
+            v0 = new android.content.IntentFilter("android.location.GPS_ENABLED_CHANGE");
+            v0.addAction("android.location.GPS_FIX_CHANGE");
+            this.r.registerReceiver(this.I, v0);
+            this.s.removeUpdates(this.H);
+            if(this.B != 0) {
+                this.B.quit();
+                this.B = 0;
+            }
+            if(this.A != 0) {
+                this.A.interrupt();
+                this.A = 0;
+            }
+            this.A = new com.aps.ak(this, "");
+            this.A.start();
+            this.t.a();
+            com.aps.s.a = 1;
+        }
+        return;
+    }
+Lcom/letv/android/lcm/a;->a.java:this.a.registerReceiver(new com.letv.android.lcm.a$a(this, 0), v0);
+     void a()
+    {
+        v0 = new android.content.IntentFilter();
+        v0.addAction("com.stv.stvpush.ACTION_RECEIVE_PUSH_COMMAND");
+        v0.addCategory(this.a.getPackageName());
+        this.a.registerReceiver(new com.letv.android.lcm.a$a(this, 0), v0);
+        return;
+    }
+################################ manifest_config ######################################
+allow_backup : false
+debuggable : false
+################################### PROVIDER ###################################
+################################### RECEIVER ###################################
+com.umeng.message.BootBroadcastReceiver
+com.umeng.message.SystemReceiver
+com.umeng.message.MessageReceiver
+com.letv.letvshop.upgrade_push.WeakMessageReceiver
+com.easy.android.framework.util.netstate.EANetworkStateReceiver
+com.umeng.message.ElectionReceiver
+################################### SERVICE ###################################
+com.umeng.message.UmengMessageIntentReceiverService
+com.umeng.message.UmengService
+################################### ACTIVITY ###################################
+com.letv.letvshop.wxapi.WXEntryActivity
+com.letv.lepay.sample.wxapi.WXPayEntryActivity
+com.letv.letvshop.activity.ProductDetailActivity
+com.letv.letvshop.activity.SplashActivity
+com.alipay.sdk.auth.demo.CallbackActivity

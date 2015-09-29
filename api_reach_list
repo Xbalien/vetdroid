@@ -1,2 +1,5 @@
-Landroid/content/Intent;->getStringExtra
-Lorg/apache/http/conn/ssl/SSLSocketFactory;->setHostnameVerifier
+Landroid/content/Intent;->getSerializableExtra
+Landroid/content/Intent;->getParcelable
+Ljava/util/zip/ZipEntry;->getName
+Ldalvik/system/DexClassLoader;-><init>
+Landroid/app/DownloadManager$Request;-><init>
