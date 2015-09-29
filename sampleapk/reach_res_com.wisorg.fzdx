@@ -1,11 +1,82 @@
-################################### Landroid/content/Intent;->getStringExtra
+################################### Landroid/content/Intent;->getSerializableExtra
  ###################################
 None
-################################### Lorg/apache/http/conn/ssl/SSLSocketFactory;->setHostnameVerifier ###################################
-Lcom/loopj/android/http/MySSLSocketFactory;->getFixedSocketFactory.java:v0.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-    public static org.apache.http.conn.ssl.SSLSocketFactory getFixedSocketFactory()
-    {
-        v0 = new com.loopj.android.http.MySSLSocketFactory(com.loopj.android.http.MySSLSocketFactory.getKeystore());
-        v0.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-        return v0;
-    }
+################################### Landroid/content/Intent;->getParcelable
+ ###################################
+None
+################################### Ljava/util/zip/ZipEntry;->getName
+ ###################################
+None
+################################### Ldalvik/system/DexClassLoader;-><init>
+ ###################################
+None
+################################### Landroid/app/DownloadManager$Request;-><init>
+ ###################################
+None
+################################### Ljava/io/File;-><init> ###################################
+Lcom/wisorg/providers/downloads/Helpers;->deleteFile.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/Utility;->saveBitmapToSDcard.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/fzdx/activity/UserCenterFragment;->upHeadImg.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/fzdx/activity/setting/DBManager;->openDatabase.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/sdk/utils/PackageUtils;->installNormal.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/AbsSplashActivity;->deepFile.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/ao;->bA.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/DetailActivity;->playSoundRecord.java: --> Ljava/io/File;-><init>reach
+Lcom/nostra13/universalimageloader/core/download/BaseImageDownloader;->getStreamFromFile.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/l;->v.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/sdk/utils/FileHelper;->getFile.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/fzdx/activity/UserCenterActivity;->upHeadImg.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/t;->aN.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/fzdx/activity/UserCenterFragmentLogout;->upHeadImg.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/sdk/utils/bitmap/BitmapUtils;->getImageFile.java: --> Ljava/io/File;-><init>reach
+Landroid/support/v4/content/FileProvider;-><clinit>.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/b/a/b;->a.java: --> Ljava/io/File;-><init>reach
+Lcom/nostra13/universalimageloader/core/DefaultConfigurationFactory;->createReserveDiscCache.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/providers/downloads/DownloadService;->removeSpuriousFiles.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/providers/downloads/DownloadThread;->cleanupDestination.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/providers/DownloadManager;->getDownloadFile.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/r;-><clinit>.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/t;->aO.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/http/FileManager;->readTxtFile.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/providers/downloads/Helpers;->getPathForFileUri.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/providers/downloads/DownloadService;->deleteDownload.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/http/FileManager;->createFold.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/Utility;->jsFileExsit.java: --> Ljava/io/File;-><init>reach
+Lcom/nostra13/universalimageloader/cache/disc/BaseDiscCache;->get.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/providers/downloads/Helpers;->chooseUniqueFilename.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/providers/downloads/DownloadProvider;->update.java: --> Ljava/io/File;-><init>reach
+Landroid/support/v4/content/FileProvider;->buildPath.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/l;->byte.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/v;->uncaughtException.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/DetailActivity;->uploadPhoto.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/t;->aJ.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/Utility;->clearFiles.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/l;->if.java: --> Ljava/io/File;-><init>reach
+Lcom/nostra13/universalimageloader/utils/StorageUtils;->getCacheDirectory.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/fzdx/activity/app/AppStatus;->checkHybirdVersion.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/t;->aL.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/s;-><clinit>.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/http/FileManager;->unZipFolder.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/sdk/db/DbManager;->createDbFileOnSDCard.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/DetailActivity;->getIntentData.java: --> Ljava/io/File;-><init>reach
+Landroid/support/v4/content/FileProvider$SimplePathStrategy;->getFileForUri.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/providers/downloads/DownloadProvider;->logVerboseOpenFileInfo.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/t;->int.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/providers/downloads/DownloadReceiver;->openDownload.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/http/FileManager;->downloadFile.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/sdk/utils/FileHelper;->getCatlogDirectory.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/h;->j.java: --> Ljava/io/File;-><init>reach
+Lcom/nostra13/universalimageloader/utils/StorageUtils;->getExternalCacheDir.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/providers/DownloadManager$CursorTranslator;->getLocalUri.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/t;->aI.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/providers/downloads/Helpers;->getExternalDestination.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/providers/downloads/DownloadProvider;->openFile.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/DetailActivity;->callSysCamera.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/providers/downloads/DownloadThread;->setupDestinationFile.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/DetailActivity;->onActivityResult.java: --> Ljava/io/File;-><init>reach
+Lcom/nostra13/universalimageloader/utils/StorageUtils;->getIndividualCacheDirectory.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/v;->aS.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/fzdx/activity/login/ConsummateMsgActivity;->upHeadImg.java: --> Ljava/io/File;-><init>reach
+Lcom/baidu/location/h;->i.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/jslibrary/DetailActivity;->getRecordPhotoDir.java: --> Ljava/io/File;-><init>reach
+Lcom/wisorg/sdk/utils/FileHelper;->getSavedLogsDirectory.java: --> Ljava/io/File;-><init>reach

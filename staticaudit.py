@@ -71,10 +71,10 @@ def source_attacksurface(d, dx):
     return sourceaudit.get_webview_res(), sourceaudit.get_register_receiver(), \
         sourceaudit.get_https(), sourceaudit.get_intent_scheme(), sourceaudit.get_logs()
 
-def reach_api_analysis(d, dx):
+def reach_api_analysis(d, dx, is_java = True):
 
     sourceaudit = SourceAudit(d, dx)
-    res = sourceaudit.reach_api_analysis()
+    res = sourceaudit.reach_api_analysis(is_java)
     return res
 
 
@@ -116,7 +116,7 @@ if __name__ == '__main__':
         apk, d, dx = staticuitls.AnalyzeAPK(apk_path, decompiler='dad')
 
         fd = open(DIR + 'reach_res_' + apk.package, 'wb')
-        ShowReachAPI(fd, reach_api_analysis(d, dx)).show()
+        ShowReachAPI(fd, reach_api_analysis(d, dx, False)).show()
         fd.close()
 
     if options.mode == '3':

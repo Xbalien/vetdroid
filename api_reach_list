@@ -3,3 +3,4 @@ Landroid/content/Intent;->getParcelable
 Ljava/util/zip/ZipEntry;->getName
 Ldalvik/system/DexClassLoader;-><init>
 Landroid/app/DownloadManager$Request;-><init>
+Ljava/io/File;-><init>

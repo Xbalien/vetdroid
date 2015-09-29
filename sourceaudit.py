@@ -50,7 +50,7 @@ class SourceAudit(object):
         #self.log = self.__mathods_search("Landroid/util/Log;", "i", ".")
         pass
 
-    def reach_api_analysis(self):
+    def reach_api_analysis(self, is_java = True):
         res = ""
         with open(REACH_API_LIST,'rb') as fd:
             reach_api_list = fd.readlines()
@@ -61,10 +61,10 @@ class SourceAudit(object):
             method_name = api_detail[1]
             res += ("################################### %s ###################################" % (reach_api) + '\n')
 
-            reach = self.__mathods_search(package_name, method_name, ".")
+            reach = self.__mathods_search(package_name, method_name, ".", is_java)
             if reach:
                 for key in reach:
-                    res += (key + '\n') + reach[key]
+                    res += (key) + reach[key] + '\n'
             else:
                 res += "None\n"
 
@@ -72,14 +72,16 @@ class SourceAudit(object):
 
 
     
-    def __mathods_search(self, package_name, method_name, descriptor) :
+    def __mathods_search(self, package_name, method_name, descriptor, is_java = True) :
         '''
             This method is search method's ref and get the method's java source
 
             :param package_name: specify the taint class name
             :param method_name: specify the taint mathod name
-            :param package_name: string
-            :param method_name: string
+            :param is_java: to java
+            :type package_name: string
+            :type method_name: string
+            :type is_java: bool
         '''
         nodes = []
         names = {}
@@ -96,7 +98,7 @@ class SourceAudit(object):
         
         for path in paths:
             nodes.append(analysis.get_Path(self.d, path))
-    
+
         for node in nodes:
             tmp = node["src"].split(" ")
             #names struct : {'class':['method_name']['method_name']}
@@ -116,11 +118,14 @@ class SourceAudit(object):
                     name = method.get_name()
                     #src method to call tainted method
                     if name in names[class_name]:
-                        java = method.get_source()
-                        java_code = java.split("\n")
-                        for code in java_code:
-                            if code.find(method_name) != -1:
-                                analysis_res["%s->%s.java:%s" % (class_name, name, code.lstrip())]=java
+                        if is_java == True:
+                            java = method.get_source()
+                            java_code = java.split("\n")
+                            for code in java_code:
+                                if code.find(method_name) != -1:
+                                    analysis_res["%s->%s.java:%s" % (class_name, name, code.lstrip())]=java
+                        else:
+                            analysis_res["%s->%s.java: --> %s->%s" % (class_name, name, package_name, method_name)] = "reach"
 
         return analysis_res
 
