@@ -58,7 +58,7 @@ class SourceAudit(object):
         for reach_api in reach_api_list:
             api_detail = reach_api.split("->")
             package_name = api_detail[0]
-            method_name = api_detail[1]
+            method_name = api_detail[1].strip('\n')
             res += ("################################### %s ###################################" % (reach_api) + '\n')
 
             reach = self.__mathods_search(package_name, method_name, ".", is_java)
